@@ -186,8 +186,8 @@ $("#desenrolar").live("click",
 		pushNotification.unregister(successHandler, errorHandler);
 		$.ajax({ 
 			type: "POST",
-			url: "http://www.anywhere.cl/wsanywhere/services/desenrolamiento/save",
-			data: {  a1 : $("#txt_rut").val() },
+			url: "http://www.anywhere.cl/wsanywhere/services/enrolamiento/delete",
+			data: {  a1:$("#txt_rut").val(), a2:$("txt_password").val(), a3:idDevice },
 			crossDomain : true,
 			beforeSend: function() {
 				$.mobile.showPageLoadingMsg();
@@ -197,7 +197,7 @@ $("#desenrolar").live("click",
 				limpiaForm("#formulario1");
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) { 
-				alert("Ocurrio un error al desenrolar el dispositivo")
+				alert("Ocurri&oacute; un error al desenrolar el dispositivo")
 				limpiaForm("#formulario1");
 			},
 			complete: function(data) {
