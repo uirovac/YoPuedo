@@ -36,7 +36,6 @@ function onDeviceReady() {
 	catch(err) { 
 		txt="There was an error on this page.\n\n"; 
 		txt+="Error description: " + err.message + "\n\n"; 
-		alert(txt); 
 	}
 	pictureSource=navigator.camera.PictureSourceType;
 	destinationType=navigator.camera.DestinationType;
@@ -95,13 +94,9 @@ function tokenHandler (result) {
 	$.getJSON("http://www.anywhere.cl/wsanywhere/services/p2s/querys/listamensajes/" + idDevice + "/" + idApp,{ },getMensajes);
 }
 
-function successHandler (result) {
-	alert("success:"+ result);
-}
+function successHandler (result) { }
 
-function errorHandler (error) {
-	alert("error 2:"+ error);
-}
+function errorHandler (error) { }
 
 function onSuccess(position) {
 	latitud = position.coords.longitude;
@@ -157,7 +152,6 @@ $("#enrolar").live("click",
 					}
 				}
 			}).form() == true) {
-				alert(idDevice + "," + senderId);
 				if(idDevice!=null && senderId !=null) {
 					$.ajax({ 
 						type: "POST",
@@ -189,7 +183,6 @@ $("#enrolar").live("click",
 
 $("#desenrolar").live("click",
 	function() {
-	alert(pushNotification);
 		pushNotification.unregister(successHandler, errorHandler);
 		$.ajax({ 
 			type: "POST",
