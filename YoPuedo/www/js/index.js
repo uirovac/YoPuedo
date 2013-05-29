@@ -220,8 +220,8 @@ $("#response").live("click", function(e) {
 	}).form() == true) {
 		$.ajax({ 
 			type: "POST",
-			url: "http://www.anywhere.cl/wsanywhere/services/respuestamensaje/save",
-			data: {  a1 : idDevice, a2 : msgcnt, a3 : $("#txt_respuesta").val() },
+			url: "http://www.anywhere.cl/wsanywhere/services/notificacion/response/save",
+			data: {  a1:idDevice, a2:msgcnt, a3:$("#txt_respuesta").val() },
 			crossDomain : true,
 			beforeSend: function() {
 				$.mobile.showPageLoadingMsg();
