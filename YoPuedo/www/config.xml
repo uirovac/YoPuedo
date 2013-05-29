@@ -3,7 +3,7 @@
 <name>Yo Puedo</name>
 <description> Aplicacion Yo Puedo </description>
 <author href="https://www.ejedigital.cl" email="soporte@ejedigital.cl">Soporte</author>
-<preference name="phonegap-version" value="2.2.0" />
+<preference name="phonegap-version" value="2.7.0" />
 <preference name="orientation"      value="default" />
 <preference name="target-device"    value="universal" />
 <preference name="fullscreen"       value="false" />
