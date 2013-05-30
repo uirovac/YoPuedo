@@ -56,6 +56,7 @@ function onNotificationAPN(e) {
 }
 
 function onNotificationGCM(e) {
+alert("levantando");
 	switch( e.event ) {
 		case "registered":
 				if ( e.regid.length > 0 ) {
@@ -64,16 +65,16 @@ function onNotificationGCM(e) {
 				}
 				break;
 		case "message":
-				alert(e.foreground);
+alert("desplegando");
 				if (e.foreground) {
 					var my_media = new Media("/android_asset/www/" + e.soundname);
 					my_media.play();
 				}
 				else if(e.coldstart) {
-					alert("--COLDSTART NOTIFICATION--");
+alert("--COLDSTART NOTIFICATION--");
 				}
 				else {
-					alert("--BACKGROUND NOTIFICATION--");
+alert("--BACKGROUND NOTIFICATION--");
 				}
 				var url = "#mensaje";    
 				$(location).attr("href",url);
