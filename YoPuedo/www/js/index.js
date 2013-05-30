@@ -62,8 +62,18 @@ function onNotificationGCM(e) {
 				if ( e.regid.length > 0 ) {
 					alert("registrado-listado");
 					idDevice = e.regid;
-					$.getJSON("http://www.anywhere.cl/wsanywhere/services/p2s/querys/listamensajes/" + idDevice + "/" + idApp,{ },getMensajes);
-				}
+					$.ajax({ 
+						type: "POST",
+						url: "http://www.anywhere.cl/wsanywhere/services/enrolamiento/update",
+						data: {  a1:idUsuario, a2:idDevice, a3:senderId },
+						crossDomain : true,
+						success: function(data,status,jqXHR) { 
+							console.log("transaccion guardada");
+							$.getJSON("http://www.anywhere.cl/wsanywhere/services/p2s/querys/listamensajes/" + idDevice + "/" + idApp,{ },getMensajes);
+						},
+						error: function(XMLHttpRequest, textStatus, errorThrown) { console.log("transaccion incompleta"); }
+					});		
+				} 
 				break;
 		case "message":
 				if (e.foreground) {
