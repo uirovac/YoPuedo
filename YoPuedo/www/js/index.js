@@ -59,14 +59,16 @@ function onNotificationGCM(e) {
 alert("levantando");
 	switch( e.event ) {
 		case "registered":
+alert("registered");			
 				if ( e.regid.length > 0 ) {
 					idDevice = e.regid;
 					$.getJSON("http://www.anywhere.cl/wsanywhere/services/p2s/querys/listamensajes/" + idDevice + "/" + idApp,{ },getMensajes);
 				}
 				break;
 		case "message":
-alert("desplegando");
+alert("message");
 				if (e.foreground) {
+alert("sound");					
 					var my_media = new Media("/android_asset/www/" + e.soundname);
 					my_media.play();
 				}
