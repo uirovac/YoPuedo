@@ -3,7 +3,7 @@ var senderId = "207801521218";
 var latitud;
 var longitud;
 var direccion;
-var msgcnt;
+var idMessage;
 var pushNotification;
 var typeDevice = null;
 var idDevice;
@@ -56,33 +56,36 @@ function onNotificationAPN(e) {
 }
 
 function onNotificationGCM(e) {
-alert("levantando");
 	switch( e.event ) {
 		case "registered":
-alert("registered");			
+				alert("registrado");
 				if ( e.regid.length > 0 ) {
+					alert("registrado-listado");
 					idDevice = e.regid;
 					$.getJSON("http://www.anywhere.cl/wsanywhere/services/p2s/querys/listamensajes/" + idDevice + "/" + idApp,{ },getMensajes);
 				}
 				break;
 		case "message":
-alert("message");
 				if (e.foreground) {
-					alert("sound");					
 					var my_media = new Media("/android_asset/www/" + e.soundname);
 					my_media.play();
+					idUsuario = "1";
+					$.ajax({ 
+						type: "POST",
+						url: "http://www.anywhere.cl/wsanywhere/services/notificacion/tracking/save",
+						data: {  a1:idDevice, a2:idUsuario, a3:e.payload.msgcnt, a4:"1" },
+						crossDomain : true,
+						success: function(data,status,jqXHR) { console.log("transaccion guardada"); },
+						error: function(XMLHttpRequest, textStatus, errorThrown) { console.log("transaccion incompleta"); }
+					});					
 				}
-				else if(e.coldstart) {
-					alert("--CNotification--");
-				}
-				else {
-					alert("--BN--");
-				}
+				else if(e.coldstart) { }
+				else { }
 				var url = "#mensaje";    
 				$(location).attr("href",url);
 				$("#txt_mensaje").html(e.payload.message);
 				$("#btn_responder").removeClass("ui-disabled");  
-				msgcnt = e.payload.msgcnt;
+				idMessage = e.payload.msgcnt;
 				break;
 		case "error":
 				alert("ERROR -> MSG:" + e.msg);
@@ -137,6 +140,18 @@ $("#principal").live("pageinit",function() {
 			navigator.app.exitApp()
 		}
 	);
+});
+
+$("#mensaje").live("pageinit",function() {
+	idUsuario = "1";
+	$.ajax({
+		type: "POST",
+		url: "http://www.anywhere.cl/wsanywhere/services/notificacion/tracking/save",
+		data: {  a1:idDevice, a2:idUsuario, a3:idMessage, a4:"2" },
+		crossDomain : true,
+		success: function(data,status,jqXHR) { console.log("transaccion guardada"); },
+		error: function(XMLHttpRequest, textStatus, errorThrown) { console.log("transaccion incompleta"); }
+	});	
 });
 
 $("#enrolar").live("click",
@@ -222,10 +237,11 @@ $("#response").live("click", function(e) {
 			}
 		}
 	}).form() == true) {
+		idUsuario = "1";
 		$.ajax({ 
 			type: "POST",
 			url: "http://www.anywhere.cl/wsanywhere/services/notificacion/response/save",
-			data: {  a1:idDevice, a2:msgcnt, a3:$("#txt_respuesta").val() },
+			data: {  a1:idDevice, a2:idUsuario, a3:idMessage, a4:$("#txt_respuesta").val() },
 			crossDomain : true,
 			beforeSend: function() {
 				$.mobile.showPageLoadingMsg();
