@@ -58,33 +58,34 @@ function onNotificationAPN(e) {
 function onNotificationGCM(e) {
 	switch( e.event ) {
 		case "registered":
-			if ( e.regid.length > 0 ) {
-				idDevice = e.regid;
-				$.getJSON("http://www.anywhere.cl/wsanywhere/services/p2s/querys/listamensajes/" + idDevice + "/" + idApp,{ },getMensajes);
-			}
-			break;
+				if ( e.regid.length > 0 ) {
+					idDevice = e.regid;
+					$.getJSON("http://www.anywhere.cl/wsanywhere/services/p2s/querys/listamensajes/" + idDevice + "/" + idApp,{ },getMensajes);
+				}
+				break;
 		case "message":
-			if (e.foreground) {
-				var my_media = new Media("/android_asset/www/" + e.soundname);
-				my_media.play();
-			}
-			else {
-			  if(e.coldstart)
-				  console.log("--COLDSTART NOTIFICATION--");
-			  else
-				  console.log("--BACKGROUND NOTIFICATION--");
-			}
-			var url = "#mensaje";    
-			$(location).attr("href",url);
-			$("#txt_mensaje").val(e.payload.message);
-			$("#btn_responder").removeClass("ui-disabled");  
-			msgcnt = e.payload.msgcnt;
-			break;
+				alert(e.foreground);
+				if (e.foreground) {
+					var my_media = new Media("/android_asset/www/" + e.soundname);
+					my_media.play();
+				}
+				else if(e.coldstart) {
+					alert("--COLDSTART NOTIFICATION--");
+				}
+				else {
+					alert("--BACKGROUND NOTIFICATION--");
+				}
+				var url = "#mensaje";    
+				$(location).attr("href",url);
+				$("#txt_mensaje").html(e.payload.message);
+				$("#btn_responder").removeClass("ui-disabled");  
+				msgcnt = e.payload.msgcnt;
+				break;
 		case "error":
-			console.log("ERROR -> MSG:" + e.msg);
-			break;
+				console.log("ERROR -> MSG:" + e.msg);
+				break;
 		default:
-			console.log("EVENT -> Unknown, an event was received and we do not know what it is");
+				console.log("EVENT -> Unknown, an event was received and we do not know what it is");
 		break;
 	}
 }
