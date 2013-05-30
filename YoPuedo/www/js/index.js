@@ -73,7 +73,7 @@ alert("message");
 					my_media.play();
 				}
 				else if(e.coldstart) {
-					alert("--CN--");
+					alert("--CNotification--");
 				}
 				else {
 					alert("--BN--");
