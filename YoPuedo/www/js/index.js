@@ -68,15 +68,15 @@ alert("registered");
 		case "message":
 alert("message");
 				if (e.foreground) {
-alert("sound");					
+					alert("sound");					
 					var my_media = new Media("/android_asset/www/" + e.soundname);
 					my_media.play();
 				}
 				else if(e.coldstart) {
-alert("--COLDSTART NOTIFICATION--");
+					alert("--CN--");
 				}
 				else {
-alert("--BACKGROUND NOTIFICATION--");
+					alert("--BN--");
 				}
 				var url = "#mensaje";    
 				$(location).attr("href",url);
@@ -85,10 +85,10 @@ alert("--BACKGROUND NOTIFICATION--");
 				msgcnt = e.payload.msgcnt;
 				break;
 		case "error":
-				console.log("ERROR -> MSG:" + e.msg);
+				alert("ERROR -> MSG:" + e.msg);
 				break;
 		default:
-				console.log("EVENT -> Unknown, an event was received and we do not know what it is");
+				alert("EVENT -> Unknown, an event was received and we do not know what it is");
 		break;
 	}
 }
