@@ -83,7 +83,7 @@ alert("--BACKGROUND NOTIFICATION--");
 				$("#txt_mensaje").html(e.payload.message);
 				$("#btn_responder").removeClass("ui-disabled");  
 				msgcnt = e.payload.msgcnt;
-				break;
+				break; 
 		case "error":
 				console.log("ERROR -> MSG:" + e.msg);
 				break;
