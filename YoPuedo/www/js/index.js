@@ -156,11 +156,11 @@ $("#principal").live("pageinit",function() {
 
 $("#mensaje").live("pageinit",function() {
 	idUsuario = "13176947";
-	alert("page message : " + idDevice);
+	idDevice = "APA91bHLUBJ-ltkaFogL9D4f9vNe9mnQiY8E2KfjOsSn-iiOlOCbN7NiNLkncm30KnZoRwaF3LtZcRZF_qgBpV1Dazgc2TNbQ8AvXxOGVGsVkKyIxUHIt2_xi9-kSfYa4VK_IH2YFLLb";
 	$.ajax({
 		type: "POST",
 		url: "http://www.anywhere.cl/wsanywhere/services/notificacion/tracking/save",
-		data: {  a1:idDevice, a2:idUsuario, a3:idApp, a4:idMessage, a5:"2" },
+		data: {  a1:idDevice, a2:idUsuario, a3:idApp, a4:"3", a5:"5" },
 		crossDomain : true,
 		success: function(data,status,jqXHR) { console.log("transaccion guardada"); },
 		error: function(XMLHttpRequest, textStatus, errorThrown) { console.log("transaccion incompleta"); }
