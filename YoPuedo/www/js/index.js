@@ -49,10 +49,9 @@ function onNotificationAPN(e) {
 function onNotificationGCM(e) {
 	switch( e.event ) {
 		case "registered":
-				alert("registrado");
 				if ( e.regid.length > 0 ) {
 					idDevice = e.regid;
-					alert("registrado-listado" + idDevice);
+					idUsuario = "13176947";
 					$.ajax({ 
 						type: "POST",
 						url: "http://www.anywhere.cl/wsanywhere/services/enrolamiento/update",
@@ -70,7 +69,7 @@ function onNotificationGCM(e) {
 				if (e.foreground) {
 					var my_media = new Media("/android_asset/www/" + e.soundname);
 					my_media.play();
-					idUsuario = "1";
+					idUsuario = "13176947";
 					$.ajax({ 
 						type: "POST",
 						url: "http://www.anywhere.cl/wsanywhere/services/notificacion/tracking/save",
@@ -82,7 +81,7 @@ function onNotificationGCM(e) {
 				}
 				else 
 					if(e.coldstart) {
-						idUsuario = "1";
+						idUsuario = "13176947";
 						$.ajax({ 
 							type: "POST",
 							url: "http://www.anywhere.cl/wsanywhere/services/notificacion/tracking/save",
@@ -164,7 +163,7 @@ $("#principal").live("pageinit",function() {
 });
 
 $("#mensaje").live("pageinit",function() {
-	idUsuario = "1";
+	idUsuario = "13176947";
 	$.ajax({
 		type: "POST",
 		url: "http://www.anywhere.cl/wsanywhere/services/notificacion/tracking/save",
@@ -258,7 +257,7 @@ $("#response").live("click", function(e) {
 			}
 		}
 	}).form() == true) {
-		idUsuario = "1";
+		idUsuario = "13176947";
 		$.ajax({ 
 			type: "POST",
 			url: "http://www.anywhere.cl/wsanywhere/services/notificacion/response/save",
