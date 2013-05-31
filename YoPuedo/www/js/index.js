@@ -62,6 +62,7 @@ function onNotificationGCM(e) {
 				if ( e.regid.length > 0 ) {
 					alert("registrado-listado");
 					idDevice = e.regid;
+					alert("registrado-listado" + idDevice);
 					$.ajax({ 
 						type: "POST",
 						url: "http://www.anywhere.cl/wsanywhere/services/enrolamiento/update",
@@ -83,14 +84,25 @@ function onNotificationGCM(e) {
 					$.ajax({ 
 						type: "POST",
 						url: "http://www.anywhere.cl/wsanywhere/services/notificacion/tracking/save",
-						data: {  a1:idDevice, a2:idUsuario, a3:e.payload.msgcnt, a4:"1" },
+						data: {  a1:idDevice, a2:idUsuario, a3:e.payload.msgcnt, a4:"2" },
 						crossDomain : true,
 						success: function(data,status,jqXHR) { console.log("transaccion guardada"); },
 						error: function(XMLHttpRequest, textStatus, errorThrown) { console.log("transaccion incompleta"); }
 					});					
 				}
-				else if(e.coldstart) { }
-				else { }
+				else if(e.coldstart) {
+					idUsuario = "1";
+					$.ajax({ 
+						type: "POST",
+						url: "http://www.anywhere.cl/wsanywhere/services/notificacion/tracking/save",
+						data: {  a1:idDevice, a2:idUsuario, a3:e.payload.msgcnt, a4:"1" },
+						crossDomain : true,
+						success: function(data,status,jqXHR) { console.log("transaccion guardada"); },
+						error: function(XMLHttpRequest, textStatus, errorThrown) { console.log("transaccion incompleta"); }
+					});	
+				
+				}
+				else { alert("pico pistola");}
 				var url = "#mensaje";    
 				$(location).attr("href",url);
 				$("#txt_mensaje").html(e.payload.message);
