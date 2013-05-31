@@ -90,19 +90,28 @@ function onNotificationGCM(e) {
 						error: function(XMLHttpRequest, textStatus, errorThrown) { console.log("transaccion incompleta"); }
 					});					
 				}
-				else if(e.coldstart) {
-					idUsuario = "1";
+				else 
+					if(e.coldstart) {
+						idUsuario = "1";
+						$.ajax({ 
+							type: "POST",
+							url: "http://www.anywhere.cl/wsanywhere/services/notificacion/tracking/save",
+							data: {  a1:idDevice, a2:idUsuario, a3:e.payload.msgcnt, a4:"1" },
+							crossDomain : true,
+							success: function(data,status,jqXHR) { console.log("transaccion guardada"); },
+							error: function(XMLHttpRequest, textStatus, errorThrown) { console.log("transaccion incompleta"); }
+						});	
+				}
+				else {
 					$.ajax({ 
 						type: "POST",
 						url: "http://www.anywhere.cl/wsanywhere/services/notificacion/tracking/save",
-						data: {  a1:idDevice, a2:idUsuario, a3:e.payload.msgcnt, a4:"1" },
+						data: {  a1:idDevice, a2:idUsuario, a3:e.payload.msgcnt, a4:"3" },
 						crossDomain : true,
 						success: function(data,status,jqXHR) { console.log("transaccion guardada"); },
 						error: function(XMLHttpRequest, textStatus, errorThrown) { console.log("transaccion incompleta"); }
-					});	
-				
+					});						
 				}
-				else { alert("pico pistola");}
 				var url = "#mensaje";    
 				$(location).attr("href",url);
 				$("#txt_mensaje").html(e.payload.message);
