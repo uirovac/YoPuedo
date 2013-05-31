@@ -70,6 +70,7 @@ function onNotificationGCM(e) {
 					var my_media = new Media("/android_asset/www/" + e.soundname);
 					my_media.play();
 					idUsuario = "13176947";
+					alert("foreground : " + idDevice);
 					$.ajax({ 
 						type: "POST",
 						url: "http://www.anywhere.cl/wsanywhere/services/notificacion/tracking/save",
@@ -80,6 +81,7 @@ function onNotificationGCM(e) {
 					});					
 				}
 				else 
+					alert("coldstart : " + idDevice);
 					if(e.coldstart) {
 						idUsuario = "13176947";
 						$.ajax({ 
@@ -91,21 +93,12 @@ function onNotificationGCM(e) {
 							error: function(XMLHttpRequest, textStatus, errorThrown) { console.log("transaccion incompleta"); }
 						});	
 				}
-				else {
-					$.ajax({ 
-						type: "POST",
-						url: "http://www.anywhere.cl/wsanywhere/services/notificacion/tracking/save",
-						data: {  a1:idDevice, a2:idUsuario, a3:idApp, a4:e.payload.msgcnt, a5:"3" },
-						crossDomain : true,
-						success: function(data,status,jqXHR) { console.log("transaccion guardada"); },
-						error: function(XMLHttpRequest, textStatus, errorThrown) { console.log("transaccion incompleta"); }
-					});						
-				}
+				else { }
+				idMessage = e.payload.msgcnt;
 				var url = "#mensaje";    
 				$(location).attr("href",url);
 				$("#txt_mensaje").html(e.payload.message);
 				$("#btn_responder").removeClass("ui-disabled");  
-				idMessage = e.payload.msgcnt;
 				break;
 		case "error":
 				alert("ERROR -> MSG:" + e.msg);
@@ -164,6 +157,7 @@ $("#principal").live("pageinit",function() {
 
 $("#mensaje").live("pageinit",function() {
 	idUsuario = "13176947";
+	alert("page message : " + idDevice);
 	$.ajax({
 		type: "POST",
 		url: "http://www.anywhere.cl/wsanywhere/services/notificacion/tracking/save",
