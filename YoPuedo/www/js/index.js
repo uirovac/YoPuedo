@@ -60,7 +60,6 @@ function onNotificationGCM(e) {
 		case "registered":
 				alert("registrado");
 				if ( e.regid.length > 0 ) {
-					alert("registrado-listado");
 					idDevice = e.regid;
 					alert("registrado-listado" + idDevice);
 					$.ajax({ 
