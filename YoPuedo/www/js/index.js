@@ -59,7 +59,7 @@ function onNotificationGCM(e) {
 						crossDomain : true,
 						success: function(data,status,jqXHR) { 
 							console.log("transaccion guardada");
-							$.getJSON("http://www.anywhere.cl/wsanywhere/services/p2s/querys/listamensajes/" + idDevice + "/" + idApp,{ },getMensajes);
+							$.getJSON("http://www.anywhere.cl/wsanywhere/services/p2s/querys/listamensajes/" + idUsuario + "/" + idApp,{ },getMensajes);
 						},
 						error: function(XMLHttpRequest, textStatus, errorThrown) { console.log("transaccion incompleta"); }
 					});		
@@ -111,7 +111,8 @@ function onNotificationGCM(e) {
 
 function tokenHandler (result) {
 	idDevice = result;
-	$.getJSON("http://www.anywhere.cl/wsanywhere/services/p2s/querys/listamensajes/" + idDevice + "/" + idApp,{ },getMensajes);
+	idUsuario = "13176947";
+	$.getJSON("http://www.anywhere.cl/wsanywhere/services/p2s/querys/listamensajes/" + idUsuario + "/" + idApp,{ },getMensajes);
 }
 
 function successHandler (result) { }
