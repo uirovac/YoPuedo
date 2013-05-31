@@ -73,7 +73,7 @@ function onNotificationGCM(e) {
 					$.ajax({ 
 						type: "POST",
 						url: "http://www.anywhere.cl/wsanywhere/services/notificacion/tracking/save",
-						data: {  a1:idDevice, a2:idUsuario, a3:e.payload.msgcnt, a4:"2" },
+						data: {  a1:idDevice, a2:idUsuario, a3:idApp, a4:e.payload.msgcnt, a5:"2" },
 						crossDomain : true,
 						success: function(data,status,jqXHR) { console.log("transaccion guardada"); },
 						error: function(XMLHttpRequest, textStatus, errorThrown) { console.log("transaccion incompleta"); }
@@ -85,7 +85,7 @@ function onNotificationGCM(e) {
 						$.ajax({ 
 							type: "POST",
 							url: "http://www.anywhere.cl/wsanywhere/services/notificacion/tracking/save",
-							data: {  a1:idDevice, a2:idUsuario, a3:e.payload.msgcnt, a4:"1" },
+							data: {  a1:idDevice, a2:idUsuario, a3:idApp, a4:e.payload.msgcnt, a5:"1" },
 							crossDomain : true,
 							success: function(data,status,jqXHR) { console.log("transaccion guardada"); },
 							error: function(XMLHttpRequest, textStatus, errorThrown) { console.log("transaccion incompleta"); }
@@ -95,7 +95,7 @@ function onNotificationGCM(e) {
 					$.ajax({ 
 						type: "POST",
 						url: "http://www.anywhere.cl/wsanywhere/services/notificacion/tracking/save",
-						data: {  a1:idDevice, a2:idUsuario, a3:e.payload.msgcnt, a4:"3" },
+						data: {  a1:idDevice, a2:idUsuario, a3:idApp, a4:e.payload.msgcnt, a5:"3" },
 						crossDomain : true,
 						success: function(data,status,jqXHR) { console.log("transaccion guardada"); },
 						error: function(XMLHttpRequest, textStatus, errorThrown) { console.log("transaccion incompleta"); }
@@ -167,7 +167,7 @@ $("#mensaje").live("pageinit",function() {
 	$.ajax({
 		type: "POST",
 		url: "http://www.anywhere.cl/wsanywhere/services/notificacion/tracking/save",
-		data: {  a1:idDevice, a2:idUsuario, a3:idMessage, a4:"2" },
+		data: {  a1:idDevice, a2:idUsuario, a3:idApp, a4:idMessage, a5:"2" },
 		crossDomain : true,
 		success: function(data,status,jqXHR) { console.log("transaccion guardada"); },
 		error: function(XMLHttpRequest, textStatus, errorThrown) { console.log("transaccion incompleta"); }
