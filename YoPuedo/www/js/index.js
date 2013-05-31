@@ -14,15 +14,6 @@ var facingImage = "";
 document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
-	document.addEventListener("backbutton", function(e) {
-		if( $("#principal").length > 0) {
-			e.preventDefault();
-			navigator.app.exitApp();
-		}
-		else {
-			navigator.app.backHistory();
-		}
-	}, false);
 	try { 
 		pushNotification = window.plugins.pushNotification;
 		typeDevice=(device.platform == "android" || device.platform == "Android")?0:1;
