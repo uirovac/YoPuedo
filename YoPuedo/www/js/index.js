@@ -70,7 +70,6 @@ function onNotificationGCM(e) {
 					var my_media = new Media("/android_asset/www/" + e.soundname);
 					my_media.play();
 					idUsuario = "13176947";
-					alert("foreground : " + idDevice);
 					$.ajax({ 
 						type: "POST",
 						url: "http://www.anywhere.cl/wsanywhere/services/notificacion/tracking/save",
@@ -81,7 +80,6 @@ function onNotificationGCM(e) {
 					});					
 				}
 				else 
-					alert("coldstart : " + idDevice);
 					if(e.coldstart) {
 						idUsuario = "13176947";
 						$.ajax({ 
@@ -101,10 +99,10 @@ function onNotificationGCM(e) {
 				$("#btn_responder").removeClass("ui-disabled");  
 				break;
 		case "error":
-				alert("ERROR -> MSG:" + e.msg);
+				console.log("ERROR -> MSG:" + e.msg);
 				break;
 		default:
-				alert("EVENT -> Unknown, an event was received and we do not know what it is");
+				console.log("EVENT -> Unknown, an event was received and we do not know what it is");
 		break;
 	}
 }
@@ -126,7 +124,7 @@ function onSuccess(position) {
 }
 
 function onError(error) {
-	alert("Intente realizar nuevamente esta operaci&oacute;n.  Si el problema persiste, busque un sitio con mejor recepci&oacute;n");
+	console.log("Intente realizar nuevamente esta operaci&oacute;n.  Si el problema persiste, busque un sitio con mejor recepci&oacute;n");
 }
 
 capturePhotoEdit = function(source) {
