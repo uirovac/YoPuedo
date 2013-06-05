@@ -268,6 +268,7 @@ $("#lvw_mensajes li a").live("click", function(e) {
 });
 
 function getMensajes(data) {
+	$("#lvw_mensajes").empty();
 	$.each(data, function(key, val) {
 		$.each(val, function(key2, val2) {
 			$("#lvw_mensajes").append('<li><a href="#mensaje" data-params="mensaje='+ escape(val2[2].value) +'">'+ 
