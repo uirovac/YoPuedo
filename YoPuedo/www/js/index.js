@@ -1,5 +1,6 @@
 var idApp = "1";
 var senderId = "207801521218";
+var idUsuario = "13176947";
 var latitud;
 var longitud;
 var direccion;
@@ -51,7 +52,6 @@ function onNotificationGCM(e) {
 		case "registered":
 				if ( e.regid.length > 0 ) {
 					idDevice = e.regid;
-					idUsuario = "13176947";
 					$.ajax({ 
 						type: "POST",
 						url: "http://www.anywhere.cl/wsanywhere/services/enrolamiento/update",
@@ -66,31 +66,19 @@ function onNotificationGCM(e) {
 				} 
 				break;
 		case "message":
+				$.ajax({ 
+					type: "POST",
+					url: "http://www.anywhere.cl/wsanywhere/services/notificacion/tracking/save",
+					data: {  a1:idDevice, a2:idUsuario, a3:idApp, a4:e.payload.msgcnt, a5:"1" },
+					crossDomain : true,
+					success: function(data,status,jqXHR) { console.log("transaccion guardada"); },
+					error: function(XMLHttpRequest, textStatus, errorThrown) { console.log("transaccion incompleta"); }
+				});				
 				if (e.foreground) {
 					var my_media = new Media("/android_asset/www/" + e.soundname);
 					my_media.play();
-					idUsuario = "13176947";
-					$.ajax({ 
-						type: "POST",
-						url: "http://www.anywhere.cl/wsanywhere/services/notificacion/tracking/save",
-						data: {  a1:idDevice, a2:idUsuario, a3:idApp, a4:e.payload.msgcnt, a5:"2" },
-						crossDomain : true,
-						success: function(data,status,jqXHR) { console.log("transaccion guardada"); },
-						error: function(XMLHttpRequest, textStatus, errorThrown) { console.log("transaccion incompleta"); }
-					});					
 				}
-				else 
-					if(e.coldstart) {
-						idUsuario = "13176947";
-						$.ajax({ 
-							type: "POST",
-							url: "http://www.anywhere.cl/wsanywhere/services/notificacion/tracking/save",
-							data: {  a1:idDevice, a2:idUsuario, a3:idApp, a4:e.payload.msgcnt, a5:"1" },
-							crossDomain : true,
-							success: function(data,status,jqXHR) { console.log("transaccion guardada"); },
-							error: function(XMLHttpRequest, textStatus, errorThrown) { console.log("transaccion incompleta"); }
-						});	
-				}
+				else if(e.coldstart) { }
 				else { }
 				idMessage = e.payload.msgcnt;
 				var url = "#mensaje";    
@@ -109,7 +97,6 @@ function onNotificationGCM(e) {
 
 function tokenHandler (result) {
 	idDevice = result;
-	idUsuario = "13176947";
 	$.getJSON("http://www.anywhere.cl/wsanywhere/services/p2s/querys/listamensajes/" + idUsuario + "/" + idApp,{ },getMensajes);
 }
 
@@ -155,7 +142,6 @@ $("#principal").live("pageinit",function() {
 });
 
 $("#mensaje").live("pageinit",function() {
-	idUsuario = "13176947";
 	idDevice = "APA91bHLUBJ-ltkaFogL9D4f9vNe9mnQiY8E2KfjOsSn-iiOlOCbN7NiNLkncm30KnZoRwaF3LtZcRZF_qgBpV1Dazgc2TNbQ8AvXxOGVGsVkKyIxUHIt2_xi9-kSfYa4VK_IH2YFLLb";
 	$.ajax({
 		type: "POST",
@@ -250,7 +236,6 @@ $("#response").live("click", function(e) {
 			}
 		}
 	}).form() == true) {
-		idUsuario = "13176947";
 		$.ajax({ 
 			type: "POST",
 			url: "http://www.anywhere.cl/wsanywhere/services/notificacion/response/save",
