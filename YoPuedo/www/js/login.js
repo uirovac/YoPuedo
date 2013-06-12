@@ -31,7 +31,7 @@ $("#login").live("pageinit", function() {
 							}
 						});
 						sessionStorage.setItem("idDevice","APA91bEnQMsnJWVhGrrm0StOczgKBnIEUQIRv3q9tdAyZsk2wqBiRf1akPbrxCpBTvmfmETpHlfk3Y1rEKn_sd5oDC6T3m6yQeYcS5Q_UT0arjDk7whcLg87XEgvhhD1C8k_R2H0KsWy");
-						$(location).attr("href","index.html");
+						$(location).attr("href","principal.html");
 			        }
 			        else {
 			        	popup("Mensaje", "Usuario o clave invalido","login.html")

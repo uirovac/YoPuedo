@@ -1,115 +1,42 @@
 <!DOCTYPE html> 
-<html>
+<html lang="es">
 	<head>
-		<meta charset="utf-8">
-		<title>Yo Puedo Mobile</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta charset="iso-8859-1"/>
+		<title>Yo Puedo</title>
 		<link rel="stylesheet" type="text/css" href="jquery-mobile/jquery.mobile-1.2.0.min.css"/>
-		<link rel="stylesheet" type="text/css" href="jquery-mobile/jqm-icon-pack-2.1.2-fa.css"/>	
-		<script type="text/javascript" charset="utf-8" src="cordova-2.7.0.js"></script>        
-		<script src="jquery-mobile/jquery-1.8.3.min.js" type="text/javascript"></script>
-		<script src="jquery-mobile/jquery.mobile-1.2.0.min.js" type="text/javascript"></script>
+        <link rel="stylesheet" type="text/css" href="jquery-mobile/jquery.mobile.simpledialog.min.css"/>
+		<link rel="stylesheet" type="text/css" href="jquery-mobile/app.css"/>
+		<script src="jquery-mobile/jquery-1.8.3.min.js"></script>
+		<script src="jquery-mobile/jquery.mobile-1.2.0.min.js"></script>
 		<script src="jquery-mobile/jquery.validate.min.js"></script>
-		<script src="js/PushNotification.js"></script>
- 		<script src="js/generales.js"></script>
-		<script src="js/index.js"></script>
-	</head>
-	<body> 
-		<div data-role="page" id="principal">
-			<div data-role="header" >
-				<h1 title="Yo Puedo">Yo Puedo</h1>
-			</div>
-			<div data-role="content">
-					<ul data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Búsqueda Mensajes..."	id="lvw_mensajes"></ul>
-			</div>
-			<div data-role="footer" data-position="fixed">
-				<div data-role="navbar">
-				<ul>
-					<li><a href="#enrolamiento" data-icon="person" data-iconpos="notext">Enrolar</a></li>
-					<li><a href="#" id="close" data-icon="power" data-iconpos="notext">Cerrar</a></li>
-				</ul>
-			</div>
-			</div>
-		</div>
-		<div data-role="page" id="enrolamiento">
-			<div data-role="header" >
-				<a href="#principal" rel="external" data-icon="back" data-iconpos="notext">Atrás</a>
-				<h1 title="Yo Puedo">Yo Puedo</h1>
-			   	<a href="#principal" rel="external" data-icon="home" data-iconpos="notext">Home</a>		
-			</div>
-			<div data-role="content">
-			    <form method="get" id="formulario1">	
-					<div data-role="fieldcontain">
-						<label for="txt_rut">Rut:</label>
-						<input name="txt_rut" id="txt_rut" type="text" class="required">
-					</div>
-			        <div data-role="fieldcontain">
-						<label for="txt_password">Password:</label>
-						<input name="txt_password" id="txt_password" type="password" class="required">
-					</div>
-			    </form>
-			</div>
-			<div data-role="footer" data-position="fixed">
-				<div data-role="navbar">
-					<ul>
-						<li><a href="#" onclick="capturePhotoEdit();">Capturar Foto</a></li>
-						<li><a href="#fotografia" data-icon="search" data-iconpos="notext">Ver Foto</a></li>
-						<li><a href="#" id="enrolar" data-icon="save" data-iconpos="notext">Registrar</a></li>
-						<li><a href="#" id="desenrolar" data-icon="trash" data-iconpos="notext">Desregistrar</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<div data-role="page" id="fotografia" data-theme="b">
+        <script src="jquery-mobile/jquery.mobile.simpledialog2.min.js"></script>
+		<script src="jquery-mobile/messages_es.js"></script>		
+		<script src="js/generales.js"></script>
+		<script src="js/login.js"></script>
+	</head> 
+	<body>
+		<div data-role="page" id="login" data-theme="b">
 			<div data-role="header">
-				<a href="#enrolamiento" rel="external" data-icon="back" data-iconpos="notext">Atrás</a>
-				<h1 title="Yo Puedo">Yo Puedo</h1>
-			   	<a href="#principal" rel="external" data-icon="home" data-iconpos="notext">Home</a>	
+				<h2 title="Yo Puedo - Login"><img src="icon.png">Yo Puedo - Login</h2>
 			</div>
-			<div data-role="content"  style="text-align:center">
-				<div data-role="fieldcontain">
-					<div class="ui-bar-c ui-corner-all ui-shadow center" style="padding:1em;width:400px;height:300px" >
-						<img style="position:relative;width:100%;height:96%" id="capturefacing" src="#" alt="mi foto"/>						
+			<div class="ui-content" data-role="content" id="contenido">
+				<form method="post" id="formLogin" name="formLogin">	
+					<div id="divlogin">
+				        <div data-role="fieldcontain">
+				        	<label for="rutPer">Usuario</label>
+		 					<input type="text" id="rutPer" name="rutPer" value="13004443-3"/>
+						</div>
+						<div data-role="fieldcontain">
+							<label for="clave">Clave</label>
+							<input type="password" id="clave" name="clave" value="13004443"/>
+						</div>
+						 <div data-role="fieldcontain" style="text-align:center;">
+						 	<input type="submit" value="Entrar"/>
+						 </div>				
 					</div>
-				</div>
-			</div>			
-		</div>
-		<div data-role="page" id="mensaje">
-			<div data-role="header" >
-				<a href="#principal" rel="external" data-icon="back" data-iconpos="notext">Atrás</a>
-				<h1 title="Yo Puedo - Mensaje">Yo Puedo - Mensaje</h1>
-			   	<a href="#principal" rel="external" data-icon="home" data-iconpos="notext">Home</a>					
+				</form>
 			</div>
-			<div data-role="content">	
-		   		<!-- <textarea cols="40" rows="8" style="height:200px;" name="txt_mensaje" id="txt_mensaje"></textarea>   -->
-		   		<div id="txt_mensaje"></div>	
-			</div>
-			<div data-role="footer" data-position="fixed">
-		    	<div data-role="navbar">
-				<ul>
-					<li><a href="#respuesta" id="btn_responder">Responder</a></li>
-				</ul>
-		        </div>
-			</div>
-		</div>
-		<div data-role="page" id="respuesta">
-			<div data-role="header" >
-				<a href="#mensaje" data-icon="back" data-iconpos="notext">Atrás</a>
-				<h1 title="Yo Puedo - Respuesta">Yo Puedo - Respuesta</h1>
-			   	<a href="#principal" data-icon="home" data-iconpos="notext">Home</a>	
-			</div>
-			<div data-role="content">
-				<form method="get" id="formulario2">
-					<label for="txt_respuesta">Mensaje:</label>
-			   		<textarea cols="40" rows="8" style="height:200px;" name="txt_respuesta" id="txt_respuesta"></textarea>
-			   	</form>	
-			</div>
-			<div data-role="footer" data-position="fixed">
-		    	<div data-role="navbar">
-				<ul>
-					<li><a href="#" id="response">Responder</a></li>
-				</ul>
-		        </div>
-			</div>
-		</div>
+		</div>		
 	</body>
 </html>

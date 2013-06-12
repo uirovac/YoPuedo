@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="www/jquery-mobile/jquery-1.8.3.min.js|www/jquery-mobile/jquery.mobile-1.2.0.min.js|www/jquery-mobile/jquery.validate.min.js|www/jquery-mobile/moment.min.js" kind="src" path=""/>
+	<classpathentry kind="con" path="org.eclipse.wst.jsdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path=""/>
+</classpath>

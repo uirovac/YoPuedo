@@ -11,6 +11,7 @@ var idDevice;
 var pictureSource; 
 var destinationType;
 var facingImage = "";
+var registred = false;
 
 document.addEventListener("deviceready", onDeviceReady, false);
 
@@ -59,6 +60,7 @@ function onNotificationGCM(e) {
 						crossDomain : true,
 						success: function(data,status,jqXHR) { 
 							console.log("transaccion guardada");
+							registred = true;
 							$.getJSON("http://www.anywhere.cl/wsanywhere/services/p2s/querys/listamensajes/" + idUsuario + "/" + idApp,{ },getMensajes);
 						},
 						error: function(XMLHttpRequest, textStatus, errorThrown) { console.log("transaccion incompleta"); }
