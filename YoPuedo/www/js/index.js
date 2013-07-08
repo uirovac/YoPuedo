@@ -251,7 +251,7 @@ $("#response").live("click", function(e) {
 				limpiaForm("#formulario2");
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) { 
-				alert("Ocurrio un error al guardar el registro")
+				alert("Ocurrió un error al guardar el registro")
 				limpiaForm("#formulario2");
 			},
 			complete: function(data) {
@@ -273,8 +273,14 @@ function getMensajes(data) {
 	$("#lvw_mensajes").empty();
 	$.each(data, function(key, val) {
 		$.each(val, function(key2, val2) {
-			$("#lvw_mensajes").append('<li><a href="#mensaje" data-params="mensaje='+ escape(val2[2].value) +'">'+ 
-			val2[2].value + '<span class="ui-li-count">' + val2[0].value + '</span></a></li>');
+			if(val2[3].value == '2') {
+				$("#lvw_mensajes").append('<li><a href="#mensaje" data-params="mensaje='+ escape(val2[2].value) +'">'+ 
+				val2[2].value + '<span class="ui-li-count">' + val2[0].value + '</span></a></li>');
+			}
+			else {
+				$("#lvw_mensajes").append('<li style="border-left: 5px solid #f00;"><a href="#mensaje"  data-params="mensaje='+ escape(val2[2].value) +'">'+ 
+				val2[2].value + '<span class="ui-li-count">' + val2[0].value + '</span></a></li>');
+			}
 		});
 	});
 	$("#lvw_mensajes").listview("refresh");
