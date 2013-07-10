@@ -10,6 +10,8 @@
 	<preference name="exit-on-suspend" value="true" />
 	<preference name="android-minSdkVersion" value="10" />
 	<icon src="icon.png" />
+	<icon src="icons/ios/icon.png" gap:platform="ios" width="57" height="57" />
+	<icon src="icons/ios/icon-72.png" gap:platform="ios" width="72" height="72" />
 	<feature name="http://api.phonegap.com/1.0/device"/>
 	<feature name="http://api.phonegap.com/1.0/battery"/>
 	<feature name="http://api.phonegap.com/1.0/camera"/>
